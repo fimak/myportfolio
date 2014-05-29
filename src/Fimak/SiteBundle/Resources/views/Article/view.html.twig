@@ -1,0 +1,30 @@
+{%  extends 'FimakSiteBundle::layout.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+    <article class="article">
+        <header>
+            <div class="date"><time datetime="{{ article.created|date('c') }}">{{ article.created|date('l, F j, Y') }}</time></div>
+            <h2>{{ article.title }}</h2>
+        </header>
+        {# <img src="{{ asset(['images/', article.image]|join) }}" alt="{{ article.title }} image not found" class="large" /> #}
+        <div>
+            <p>{{ article.body }}</p>
+        </div>
+    </article>
+    <section class="comments" id="comments">
+        <section class="previous-comments">
+            <h3>Comments</h3>
+            {% include 'FimakSiteBundle:Comment:index.html.twig' with { 'comments': comments } %}
+            <h3>Add Comment</h3>
+            {{ render(controller( 'FimakSiteBundle:Comment:new', { 'article_id': article.id } )) }}
+        </section>
+    </section>
+
+    <footer class="meta">
+        <p>Comments: {{ article.comments|length }}</p>
+        <p>Posted by <span class="highlight">{{ article.author }}</span> at {{ article.created|date('h:iA') }}</p>
+        <p>Tags: <span class="highlight">{{ article.tags }}</span></p>
+    </footer>
+{% endblock %}

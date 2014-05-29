@@ -1,0 +1,6 @@
+<form action="{{ path('fimak_site_comment_create', { 'article_id' : comment.article.id } ) }}" method="post" {{ form_enctype(form) }} class="site-form">
+    {{ form_widget(form) }}
+    <p>
+        <input type="submit" value="Submit">
+    </p>
+</form>

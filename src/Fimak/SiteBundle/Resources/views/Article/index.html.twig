@@ -1,0 +1,25 @@
+{%  extends 'FimakSiteBundle::layout.html.twig' %}
+
+{% block body %}
+    {% for article in articles %}
+        <article class="article">
+            <div class="date"><time datetime="{{ article.created|date('c') }}">{{ article.created|date('l, F j, Y') }}</time></div>
+            <header>
+                <h2><a href="{{ path('fimak_site_article_view', { 'id': article.id }) }}">{{ article.title }}</a></h2>
+            </header>
+
+            {# <img src="{{ asset(['images/', article.image]|join) }}" /> #}
+            <div class="snippet">
+                <p>{{ article.body(500) }}...<a class="continue" href="{{ path('fimak_site_article_view', { 'id': article.id }) }}">continue reading.</a></p>
+            </div>
+
+            <footer class="meta">
+                <p>Comments: -</p>
+                <p>Posted by <span class="highlight">{{article.author}}</span> at {{ article.created|date('h:iA') }}</p>
+                <p>Tags: <span class="highlight">{{ article.tags }}</span></p>
+            </footer>
+        </article>
+    {% else %}
+        <p>There are no article entries</p>
+    {% endfor %}
+{% endblock %}

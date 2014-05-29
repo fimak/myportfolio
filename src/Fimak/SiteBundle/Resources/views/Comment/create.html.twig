@@ -1,0 +1,8 @@
+{% extends 'FimakSiteBundle::layout.html.twig' %}
+
+{% block title %}Add Comment{% endblock%}
+
+{% block body %}
+    <h1>Add comment for article"{{ comment.article.title }}"</h1>
+    {% include 'FimakSiteBundle:Comment:form.html.twig' with { 'form': form } %}
+{% endblock %}

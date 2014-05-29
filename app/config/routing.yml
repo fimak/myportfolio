@@ -1,0 +1,4 @@
+fimak_site:
+    resource: "@FimakSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
