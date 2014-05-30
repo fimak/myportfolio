@@ -2,10 +2,20 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('bundles/fimaksite/css/form.css') }}" type="text/css" rel="stylesheet" />
-    <link href="{{ asset('bundles/fimaksite/css/article.css') }}" type="text/css" rel="stylesheet" />
-    <link href="{{ asset('bundles/fimaksite/css/comment.css') }}" type="text/css" rel="stylesheet" />
-    <link href="{{ asset('bundles/fimaksite/css/sidebar.css') }}" type="text/css" rel="stylesheet" />
+
+    {% stylesheets
+        '@FimakSiteBundle/Resources/public/css/*'
+        output='css/style.css'
+        filter='?yui_css'
+    %}
+        <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+
+    {% javascripts
+        '@FimakSiteBundle/Resources/public/js/*'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
 
 {% block sidebar %}
