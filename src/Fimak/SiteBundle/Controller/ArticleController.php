@@ -36,4 +36,26 @@ class ArticleController extends Controller
             'comments' => $comments
         ));
     }
+
+    public function sidebarAction()
+    {
+        $em = $this->getDoctrine()
+            ->getManager();
+
+        $tags = $em->getRepository('FimakSiteBundle:Article')
+            ->getTags();
+
+        $tagWeights = $em->getRepository('FimakSiteBundle:Article')
+            ->getTagWeights($tags);
+
+        $commentLimit   = $this->container
+            ->getParameter('fimak_site.comments.latest_comment_limit');
+        $latestComments = $em->getRepository('FimakSiteBundle:Comment')
+            ->getLatestComments($commentLimit);
+
+        return $this->render('FimakSiteBundle:Article:sidebar.html.twig', array(
+            'tags' => $tagWeights,
+            'latestComments'    => $latestComments,
+        ));
+    }
 }

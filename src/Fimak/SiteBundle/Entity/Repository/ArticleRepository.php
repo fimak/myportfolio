@@ -25,4 +25,52 @@ class ArticleRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function getTags()
+    {
+        $articleTags = $this->createQueryBuilder('a')
+            ->select('a.tags')
+            ->getQuery()
+            ->getResult();
+
+        $tags = array();
+        foreach ($articleTags as $articleTag)
+        {
+            $tags = array_merge(explode(",", $articleTag['tags']), $tags);
+        }
+
+        foreach ($tags as &$tag)
+        {
+            $tag = trim($tag);
+        }
+
+        return $tags;
+    }
+
+    public function getTagWeights($tags)
+    {
+        $tagWeights = array();
+        if (empty($tags))
+            return $tagWeights;
+
+        foreach ($tags as $tag)
+        {
+            $tagWeights[$tag] = (isset($tagWeights[$tag])) ? $tagWeights[$tag] + 1 : 1;
+        }
+        // Shuffle the tags
+        uksort($tagWeights, function() {
+            return rand() > rand();
+        });
+
+        $max = max($tagWeights);
+
+        // Max of 5 weights
+        $multiplier = ($max > 5) ? 5 / $max : 1;
+        foreach ($tagWeights as &$tag)
+        {
+            $tag = ceil($tag * $multiplier);
+        }
+
+        return $tagWeights;
+    }
 }

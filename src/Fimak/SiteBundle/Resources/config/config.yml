@@ -1,0 +1,2 @@
+parameters:
+    fimak_site.comments.latest_comment_limit: 10

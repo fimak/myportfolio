@@ -5,8 +5,9 @@
     <link href="{{ asset('bundles/fimaksite/css/form.css') }}" type="text/css" rel="stylesheet" />
     <link href="{{ asset('bundles/fimaksite/css/article.css') }}" type="text/css" rel="stylesheet" />
     <link href="{{ asset('bundles/fimaksite/css/comment.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('bundles/fimaksite/css/sidebar.css') }}" type="text/css" rel="stylesheet" />
 {% endblock %}
 
 {% block sidebar %}
-    Sidebar content
+    {{ render(controller( 'FimakSiteBundle:Article:sidebar')) }}
 {% endblock %}
