@@ -5,3 +5,7 @@ services:
 #    fimak_site.example:
 #        class: %fimak_site.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    fimak_site.twig.extension:
+        class: Fimak\SiteBundle\Twig\Extensions\FimakSiteExtension
+        tags:
+            - { name: twig.extension }
