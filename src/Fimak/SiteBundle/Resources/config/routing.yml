@@ -17,8 +17,8 @@ fimak_site_articles:
     defaults: { _controller: FimakSiteBundle:Article:index }
 
 fimak_site_article_view:
-    pattern: /article/{id}
-    defaults: { _controller: FimakSiteBundle:Article:view }
+    pattern: /article/{id}/{slug}/{comments}
+    defaults: { _controller: FimakSiteBundle:Article:view, comments: true }
     requirements:
         _method: GET
         id: \d+

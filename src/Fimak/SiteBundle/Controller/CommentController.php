@@ -39,7 +39,9 @@ class CommentController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('fimak_site_article_view', array(
-                    'id' => $comment->getArticle()->getId())) . '#comment-' . $comment->getId()
+                'id' => $comment->getArticle()->getId(),
+                'slug' => $comment->getArticle()->getSlug())) .
+                '#comment-' . $comment->getId()
             );
         }
 

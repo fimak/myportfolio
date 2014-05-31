@@ -19,7 +19,7 @@ class ArticleController extends Controller
         ));
     }
 
-    public function viewAction($id)
+    public function viewAction($id, $slug, $comments)
     {
         $em = $this->getDoctrine()->getManager();
         $article = $em->getRepository('FimakSiteBundle:Article')->find($id);

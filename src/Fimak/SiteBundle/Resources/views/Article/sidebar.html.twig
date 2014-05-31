@@ -19,7 +19,7 @@
         <article class="comment">
             <header>
                 <p class="small"><span class="highlight">{{ comment.author }}</span> commented on
-                    <a href="{{ path('fimak_site_article_view', { 'id': comment.article.id }) }}#comment-{{ comment.id }}">
+                    <a href="{{ path('fimak_site_article_view', { 'id': comment.article.id, 'slug': comment.article.slug }) }}#comment-{{ comment.id }}">
                         {{ comment.article.title }}
                     </a>
                     [<em><time datetime="{{ comment.created|date('c') }}">{{ comment.created|created_ago }}</time></em>]
